@@ -1,0 +1,93 @@
+*,
+*::before,
+&::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f4f4f4;
+  padding: 20px;
+  width: 800px;
+  margin-inline: auto;
+  margin-top: 10rem;
+}
+
+input:not([type="checkbox"]) {
+  font-size: 16px;
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+  background-color: #f4f4f4;
+  border: 1px solid #333;
+  width: 20px;
+  height: 20px;
+}
+
+button {
+  font-size: 16px;
+  padding: 10px;
+  height: 40px;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button.delete {
+  background-color: #ff0000;
+}
+
+.add-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 10px;
+}
+
+.add-form > button {
+  width: 80px;
+}
+
+.todo-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  margin-bottom: 10px;
+  border: 1px solid #cecece;
+  border-radius: 5px;
+}
+
+.todo-card > input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.todo-card > button {
+  margin-left: auto;
+  width: 80px;
+}
+
+.todo-card.completed label {
+  text-decoration: line-through;
+  color: #cecece;
+}
+
+li {
+  list-style-type: none;
+}
+
+.delete-button {
+  background-color: #ff0000;
+  width: 40px !important;
+}

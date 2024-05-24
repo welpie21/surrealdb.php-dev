@@ -1,16 +1,19 @@
 <?php
 
 require_once "../../vendor/autoload.php";
+$config = require_once("./config.php");
 
 use Surreal\Surreal;
 
 $db = new Surreal();
-$db->connect("http://localhost:8000", [
-	"namespace" => "example",
-	"database" => "todo"
-]);
+
+$db->connect(
+	$config["connection"]["host"],
+	$config["connection"]["target"]
+);
 
 $tasks = $db->select("task");
+
 ?>
 
 <!DOCTYPE html>
@@ -25,23 +28,22 @@ $tasks = $db->select("task");
 </head>
 
 <body>
-	<form class="add-form" action="./api/handle.php" method="post">
-		<input name="task" type="text" />
+	<form class="add-form" action="./api/add.php" method="post">
+		<input name="task" type="text" placeholder="Task name..." />
 		<button class="submit-button" name="action" value="add">
 			Add
 		</button>
 	</form>
-	<form action="./api/handle.php" method="post"></form>
 	<ol>
 		<?php foreach ($tasks as $task) : ?>
-			<li class="task">
-				<?= $task['name'] ?>
-				<form action="./api/handle.php" method="post">
-					<input type="hidden" name="task" value="<?= $task['id'] ?>" />
-					<button class="delete-button" name="action" value="delete">
-						x
-					</button>
-				</form>
+			<li class="task todo-card <?= $task["done"] ? "completed" : "" ?>">
+				<input id="<?= $task["id"] ?>" type="checkbox" class="task-checkbox" name="done" <?= $task["done"] ? "checked" : "" ?> data-id="<?= $task["id"] ?>" />
+				<label class="task-name" for="<?= $task["id"] ?>">
+					<?= $task["name"] ?>
+				</label>
+				<button class="delete-button" name="action" value="delete" data-id="<?= $task["id"] ?>">
+					X
+				</button>
 			</li>
 		<?php endforeach; ?>
 	</ol>
