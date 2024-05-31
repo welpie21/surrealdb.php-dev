@@ -2,10 +2,16 @@
 
 namespace Surreal\ORM\Statements;
 
-use Surreal\ORM\Attributes\StatementAttribute;
+use Surreal\ORM\QueryBuilder\QueryBuilder;
 
-#[StatementAttribute("REMOVE")]
 final class RemoveStatement implements StatementInterface
 {
+    public function __construct(private QueryBuilder &$builder)
+    {
+    }
 
+    public static function getStatement(): string
+    {
+        return "REMOVE";
+    }
 }

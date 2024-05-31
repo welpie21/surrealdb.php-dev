@@ -20,9 +20,6 @@ abstract class QueryBuilder
 
     public function assignStatement(StatementInterface &$statement): void
     {
-        $reflection = new \ReflectionClass($statement);
-        $attributes = $reflection->getAttributes();
-
-        var_dump($attributes);
+        $this->query = $statement::getStatement();
     }
 }
