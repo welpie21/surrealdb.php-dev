@@ -23,7 +23,6 @@ jobs:
     - name: Start SurrealDB
       uses: surrealdb/setup-surreal@v1.0.0
       with:
-        surrealdb_version: '1.5.0'
         surrealdb_auth: true
         surrealdb_username: 'root'
         surrealdb_password: 'root'
