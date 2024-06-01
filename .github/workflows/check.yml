@@ -2,9 +2,9 @@ name: Check
 
 on:
   push:
-    branches: ["main"]
+    branches: ["fix/ci-issue"]
   pull_request:
-    branches: ["main"]
+    branches: ["fix/ci-issue"]
 
 jobs:
 
