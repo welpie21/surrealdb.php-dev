@@ -20,6 +20,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+      # setup php version
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+
+    - name: Setup Composer
+      uses: php-actions/composer@v6
+
     - name: Start SurrealDB
       uses: surrealdb/setup-surreal@v1.0.1
       with:
@@ -32,18 +41,6 @@ jobs:
       
     - name: Print SurrealDB version
       run: curl -X GET http://localhost:8000/version
-
-      # setup php version
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        extensions: ${{ env.PHP_EXTENSIONS }}
-        ini-values: ${{ env.PHP_INI_VALUES }}
-        tools: none
-
-    - name: Setup Composer
-      uses: php-actions/composer@v6
 
     - name: Run tests
       run: vendor/bin/phpunit -c phpunit.xml
