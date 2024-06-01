@@ -8,34 +8,27 @@ on:
 
 jobs:
 
-  serve_temp_surreal:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: SurrealDB in Github Actions
-        uses: surrealdb/setup-surreal@v1.0.0
-        with:
-          surrealdb_auth: true
-          surrealdb_username: 'root'
-          surrealdb_password: 'root'
-          
-      - name: Wait for SurrealDB to be ready
-        run: while ! curl --output /dev/null --silent --head --fail http://localhost:8000; do sleep 1 && echo -n .; done;
-        
-      - name: Print SurrealDB version
-        run: curl -X GET http://localhost:8000/version
-
   check_and_test:
     runs-on: ubuntu-latest
-
-    needs:
-      - serve_temp_surreal
 
     env:
       PHP_EXTENSIONS: none, ctype, curl, dom, json, libxml, mbstring, openssl, phar, soap, tokenizer, xml, xmlwriter
       PHP_INI_VALUES: memory_limit=-1, assert.exception=1, zend.assertions=1, error_reporting=-1, log_errors_max_len=0, display_errors=On
 
     steps:
+
+    - name: SurrealDB in Github Actions
+      uses: surrealdb/setup-surreal@v1.0.0
+      with:
+        surrealdb_auth: true
+        surrealdb_username: 'root'
+        surrealdb_password: 'root'
+            
+    - name: Wait for SurrealDB to be ready
+      run: while ! curl --output /dev/null --silent --head --fail http://localhost:8000; do sleep 1 && echo -n .; done;
+      
+    - name: Print SurrealDB version
+      run: curl -X GET http://localhost:8000/version
 
     - name: Checkout repository
       uses: actions/checkout@v4
