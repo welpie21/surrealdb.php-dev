@@ -30,7 +30,7 @@ jobs:
       uses: php-actions/composer@v6
 
     - name: Test
-      uses: ./github/actions/unit-test
+      uses: ./.github/actions/unit-test
       with:
         surrealdb_version: "latest"
         surrealdb_port: "8000"
