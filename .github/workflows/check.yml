@@ -29,13 +29,15 @@ jobs:
     - name: Setup Composer
       uses: php-actions/composer@v6
 
-    - name: Pull SurrealDB image
-      run: docker pull surrealdb/surrealdb:latest
+    - name: Test
+      uses: ./github/actions/unit-test
+      with:
+        surrealdb_version: "latest"
+        surrealdb_port: "8000"
+        surrealdb_username: "root"
+        surrealdb_password: "root"
+        surrealdb_auth: "true"
 
-    - name: Run SurrealDB container
-      run: docker run --name surrealdb --publish 8000:8000 --detach --entrypoint "surreal" surrealdb/surrealdb:latest start --auth --user root --pass root
-
-            
     - name: Wait for SurrealDB to be ready
       run: while ! curl --output /dev/null --silent --head --fail http://localhost:8000; do sleep 1 && echo -n .; done;
       
