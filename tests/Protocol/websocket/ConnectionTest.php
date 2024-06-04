@@ -14,7 +14,7 @@ class ConnectionTest extends TestCase
     private function getDb(): Surreal
     {
         $db = new Surreal();
-        $db->connect("ws://localhost:8000/rpc", [
+        $db->connect("ws://127.0.0.1:8000/rpc", [
             "namespace" => "test",
             "database" => "test"
         ]);

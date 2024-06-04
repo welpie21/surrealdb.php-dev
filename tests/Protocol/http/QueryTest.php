@@ -16,7 +16,7 @@ class QueryTest extends TestCase
     private function getDb(): Surreal
     {
         $db = new Surreal();
-        $db->connect("http://localhost:8000", [
+        $db->connect("http://127.0.0.1:8000", [
             "namespace" => "test",
             "database" => "test"
         ]);

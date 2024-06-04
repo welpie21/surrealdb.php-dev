@@ -16,7 +16,7 @@ class ImportTest extends TestCase
     public function testImport(): void
     {
         $db = new Surreal();
-        $db->connect("http://localhost:8000", [
+        $db->connect("http://127.0.0.1:8000", [
             "namespace" => "test",
             "database" => "test"
         ]);
@@ -34,7 +34,7 @@ class ImportTest extends TestCase
     public function testImportWithWrongCredentials(): void
     {
         $db = new Surreal();
-        $db->connect("http://localhost:8000", [
+        $db->connect("http://127.0.0.1:8000", [
             "namespace" => "test",
             "database" => "test"
         ]);
