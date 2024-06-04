@@ -44,3 +44,6 @@ jobs:
 
     - name: Run tests
       run: vendor/bin/phpunit -c phpunit.xml
+      
+    - name: Log docker containers
+      run: docker ps -a
