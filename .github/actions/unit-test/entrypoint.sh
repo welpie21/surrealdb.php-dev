@@ -50,4 +50,4 @@ echo "SurrealDB version: $VERSION - Port: $PORT"
 echo "docker run --name surrealdb --publish $PORT:8000 --detach surrealdb/surrealdb:$VERSION start $USERNAME $PASSWORD $AUTH $STRICT $LOG"
 
 docker pull surrealdb/surrealdb:$VERSION
-docker run --name surrealdb --publish $PORT:8000 --detach surrealdb/surrealdb:$VERSION start --auth
+docker run --name surrealdb --publish $PORT:8000 --detach surrealdb/surrealdb:$VERSION start --auth --user root --pass root
