@@ -41,9 +41,9 @@ jobs:
       
     - name: Print SurrealDB version
       run: curl -X GET http://localhost:8000/version
+    
+    - name: Log docker containers
+      run: docker ps -a
 
     - name: Run tests
       run: vendor/bin/phpunit -c phpunit.xml
-      
-    - name: Log docker containers
-      run: docker ps -a
