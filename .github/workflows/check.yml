@@ -33,7 +33,7 @@ jobs:
       run: docker pull surrealdb/surrealdb:$VERSION
 
     - name: Run SurrealDB container
-      run: docker run --name surrealdb --publish 8000:8000 --detach --entrypoint "surreal" surrealdb/surrealdb:$VERSION start --auth --user root --pass root
+      run: docker run --name surrealdb --publish 8000:8000 --detach --entrypoint "surreal" surrealdb/surrealdb:latest start --auth --user root --pass root
 
             
     - name: Wait for SurrealDB to be ready
